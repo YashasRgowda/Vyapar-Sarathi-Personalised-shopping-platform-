@@ -1,5 +1,3 @@
-![Screenshot (58)](https://github.com/user-attachments/assets/c80f52a7-c6e6-48b1-8382-e274c6f9c561)![Screenshot (57)](https://github.com/user-attachments/assets/76c73300-3082-4b8b-96de-f97bf418f78c)# Vyapar Sarathi - Personalised Shopping Experience
-
 ## 📌 Overview
 Vyapar Sarathi is an innovative personalised shopping platform designed to enhance the user experience by providing tailored recommendations, seamless navigation, and a streamlined shopping process.
 
