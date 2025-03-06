@@ -114,5 +114,7 @@ This project is licensed under the **MIT License**.
 ## 📩 Contact
 For any queries or support, feel free to reach out:
 - **GitHub:** [YashasRgowda](https://github.com/YashasRgowda)
-- **Email:** [YourEmail@example.com]
+- **Email:** [yashas.r2002@gmail.com]
+- **LinkedIn:** [YashasRgowda](https://www.linkedin.com/in/yashas-r-gowda/)
+
 
