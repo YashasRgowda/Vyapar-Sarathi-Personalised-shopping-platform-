@@ -1,4 +1,4 @@
-# Vyapar Sarathi - Personalised Shopping Experience
+![Screenshot (58)](https://github.com/user-attachments/assets/c80f52a7-c6e6-48b1-8382-e274c6f9c561)![Screenshot (57)](https://github.com/user-attachments/assets/76c73300-3082-4b8b-96de-f97bf418f78c)# Vyapar Sarathi - Personalised Shopping Experience
 
 ## 📌 Overview
 Vyapar Sarathi is an innovative personalised shopping platform designed to enhance the user experience by providing tailored recommendations, seamless navigation, and a streamlined shopping process.
@@ -99,6 +99,23 @@ To set up the project locally, follow these steps:
 - 🛍️ Sign up or log in to access personalized recommendations.
 - 🔍 Browse products and add them to your wishlist or cart.
 - 💳 Proceed to checkout for a seamless purchase experience.
+
+## Screenshots
+![Screenshot (57)](https://github.com/user-attachments/assets/dbce5d24-a800-4c9e-af85-8898d96e915f)
+
+![Screenshot (58)](https://github.com/user-attachments/assets/d68c7fff-3754-4029-9005-74b2f1f870df)
+
+![Screenshot (60)](https://github.com/user-attachments/assets/594512d1-3a21-4f2c-9607-b45df73dfb71)
+
+![Screenshot (61)](https://github.com/user-attachments/assets/915e0187-c641-4e6b-a873-4fc925b3d801)
+
+![Screenshot (62)](https://github.com/user-attachments/assets/1e91aacc-b918-4807-9272-2d9598175b6d)
+
+![Screenshot (63)](https://github.com/user-attachments/assets/de94e73d-0c47-4083-aa03-8c44a9bd2a78)
+
+![Screenshot (65)](https://github.com/user-attachments/assets/0488c1a2-70cb-4870-8952-69462fc87ac6)
+
+![Screenshot (67)](https://github.com/user-attachments/assets/da4c7a1b-c46b-472a-8ff3-d0ee6fa24a10)
 
 ## 🤝 Contributing
 We welcome contributions! If you'd like to contribute:
