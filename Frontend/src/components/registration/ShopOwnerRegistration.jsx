@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Check, Upload } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { generateShopOwnerUCI } from '../../utils/uciUtils';
 
 const ShopOwnerRegistration = () => {
   const [step, setStep] = useState(1);
@@ -10,7 +11,9 @@ const ShopOwnerRegistration = () => {
     documents: null,
     aadhaar: '',
     aadhaarImage: null,
-    otp: ''
+    otp: '',
+    birthYear: '',
+    uci: ''
   });
 
   const steps = [
@@ -28,6 +31,33 @@ const ShopOwnerRegistration = () => {
   const handleFileChange = (e, field) => {
     const file = e.target.files[0];
     setFormData(prev => ({ ...prev, [field]: file }));
+  };
+
+  // Generate UCI when moving to the final step
+  const handleNextStep = () => {
+    if (step === 3) {
+      // Extract birth year from Aadhaar number (fictional - for demonstration)
+      // In a real app, you would extract this from a verified source
+      const birthYear = formData.birthYear || '1972';
+      const shopOwnerUCI = generateShopOwnerUCI(birthYear);
+      setFormData(prev => ({ ...prev, uci: shopOwnerUCI }));
+    }
+    setStep(s => s + 1);
+  };
+
+  // For OTP input handling
+  const handleOtpChange = (index, value) => {
+    if (value.length <= 1) {
+      const otp = formData.otp.split('');
+      otp[index] = value;
+      setFormData(prev => ({ ...prev, otp: otp.join('') }));
+      
+      // Auto focus to next input
+      if (value && index < 5) {
+        const nextInput = document.getElementById(`otp-${index + 1}`);
+        if (nextInput) nextInput.focus();
+      }
+    }
   };
 
   return (
@@ -81,6 +111,18 @@ const ShopOwnerRegistration = () => {
                     />
                   </div>
                   <div className="relative p-4 bg-blue-50/50 border border-blue-100 rounded-xl">
+                    <label className="text-sm font-medium text-blue-800 mb-2 block">Year of Birth</label>
+                    <input
+                      type="text"
+                      name="birthYear"
+                      value={formData.birthYear}
+                      onChange={handleChange}
+                      className="w-full px-4 py-4 text-lg bg-white border border-blue-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
+                      placeholder="Enter your birth year (e.g., 1980)"
+                      maxLength="4"
+                    />
+                  </div>
+                  <div className="relative p-4 bg-blue-50/50 border border-blue-100 rounded-xl">
                     <label className="text-sm font-medium text-blue-800 mb-2 block">Business Documents</label>
                     <div className="group relative overflow-hidden rounded-xl border-2 border-dashed border-blue-200 bg-gradient-to-b from-blue-50 to-white p-8 transition-all hover:border-blue-400">
                       <input
@@ -131,6 +173,7 @@ const ShopOwnerRegistration = () => {
                       onChange={handleChange}
                       className="w-full px-4 py-4 text-lg bg-white border border-purple-200 rounded-lg focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition-all"
                       placeholder="Enter your 12-digit Aadhaar number"
+                      maxLength="12"
                     />
                   </div>
                   <div className="mt-8">
@@ -176,20 +219,15 @@ const ShopOwnerRegistration = () => {
                 <div className="p-8 bg-white border border-green-100 rounded-xl shadow-sm">
                   <div className="bg-green-50/50 p-6 rounded-xl border border-green-100">
                     <div className="flex justify-center space-x-4">
-                      {[1, 2, 3, 4, 5, 6].map((_, index) => (
+                      {[0, 1, 2, 3, 4, 5].map((index) => (
                         <input
                           key={index}
+                          id={`otp-${index}`}
                           type="text"
                           maxLength="1"
                           className="w-12 h-12 text-center text-2xl font-bold bg-white border-2 border-green-200 rounded-lg focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                          onChange={(e) => {
-                            const otp = formData.otp.split('');
-                            otp[index] = e.target.value;
-                            setFormData(prev => ({ ...prev, otp: otp.join('') }));
-                            if (e.target.value && e.target.nextSibling) {
-                              e.target.nextSibling.focus();
-                            }
-                          }}
+                          value={formData.otp[index] || ''}
+                          onChange={(e) => handleOtpChange(index, e.target.value)}
                         />
                       ))}
                     </div>
@@ -224,7 +262,7 @@ const ShopOwnerRegistration = () => {
                   </p>
                   <div className="bg-gradient-to-r from-teal-50 to-white rounded-xl p-6 max-w-sm mx-auto border border-teal-100">
                     <p className="text-sm text-teal-600 mb-2">Your Shop's Unique ID</p>
-                    <p className="text-2xl font-mono font-bold text-teal-600">VS-{Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                    <p className="text-2xl font-mono font-bold text-teal-600">{formData.uci}</p>
                   </div>
                 </div>
               </motion.div>
@@ -243,7 +281,7 @@ const ShopOwnerRegistration = () => {
               )}
               {step < 4 && (
                 <button
-                  onClick={() => setStep(s => s + 1)}
+                  onClick={handleNextStep}
                   className={`ml-auto inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm ${
                     step === 1 ? 'w-full justify-center' : ''
                   }`}
